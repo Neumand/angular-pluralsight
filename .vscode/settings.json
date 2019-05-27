@@ -1,0 +1,7 @@
+{
+  "files.autoSave": "afterDelay",
+  "html.format.wrapAttributes": "force-aligned",
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5"
+}
