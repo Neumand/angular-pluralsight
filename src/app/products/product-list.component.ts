@@ -25,10 +25,10 @@ export class ProductListComponent implements OnInit {
   }
 
   showImage: boolean = false;
+  errorMessage: string;
   products: IProduct[] = [];
 
-  constructor(private productService: ProductService) {
-  }
+  constructor(private productService: ProductService) {}
 
   onRatingClicked(message: string): void {
     this.pageTitle = `Product List: ${message}`;
@@ -49,7 +49,12 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.products = this.productService.products;
-    this.filteredProducts = this.products;
+    this.productService.getProducts().subscribe(
+      products => {
+        this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error => (this.errorMessage = <any>error)
+    );
   }
 }
